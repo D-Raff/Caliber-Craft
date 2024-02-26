@@ -25,19 +25,25 @@ export default {
 }
 </script>
 <style scoped>
-.offcanvas-body ul{
-   list-style: none;
-   text-decoration: none;
+.offcanvas-body ul {
+    list-style: none;
+    text-decoration: none;
 }
-#nav-item{
+
+#nav-item {
     text-decoration: none;
     color: red;
 }
+
 .router-link-exact-active {
-  color: #42b983 !important;
+    color: #42b983 !important;
 }
-:is(.offcanvas-body, .offcanvas-header){
-    /* background: transparent !important; */
-    background: rgba(0, 0, 0, 50%);
-}
-</style>
+
+/* :is(.offcanvas-body, .offcanvas-header) {
+} */
+
+#offcanvasScrollingLabel {
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}</style>
