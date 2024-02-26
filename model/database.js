@@ -60,16 +60,16 @@ const getProduct = async(prodID)=>{
     `,[prodID])
     return product
 }
-const addProduct = async (prodName,quantity,amount,category,prodUrl,prodBio,prodSingle,prodPng)=>{
+const addProduct = async (prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3)=>{
     const[product] = await pool.query(`
-    INSERT INTO Products (prodName,quantity,amount,category,prodUrl,prodBio,prodSingle,prodPng) VALUES (?,?,?,?,?,?,?,?)
-    `,[prodName,quantity,amount,category,prodUrl,prodBio,prodSingle,prodPng])
+    INSERT INTO Products (prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3) VALUES (?,?,?,?,?,?,?,?,?)
+    `,[prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3])
     return getProduct(product.insertId)
 }
-const editProduct = async (prodID,prodName,quantity,amount,category,prodUrl,prodBio,prodSingle,prodPng)=>{
+const editProduct = async (prodID,prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3)=>{
     const [product] = await pool.query(`
-    UPDATE Users SET prodName = ?,quantity = ?,amount = ?,category = ?,prodUrl = ?,prodBio = ?,prodSingle = ?,prodPng = ? WHERE (prodID = ?)
-    `,[prodID,prodName,quantity,amount,category,prodUrl,prodBio,prodSingle,prodPng])
+    UPDATE Users SET prodName = ?,quantity = ?,amount = ?,category = ?,prodUrl = ?,prodBio = ?,prodSingle1 = ?,prodSingle2 = ?,prodSingle3 = ? WHERE (prodID = ?)
+    `,[prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3,prodID,])
     return getProducts(product)
 }
 const deleteProduct = async (prodName)=>{
