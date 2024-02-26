@@ -7,7 +7,7 @@ import UsersRouter from './routes/user.js'
 
 config()
 
-const PORT = process.env.port
+const PORT = process.env.MYSQL_ADDON_PORT
 const app = express()
 
 
