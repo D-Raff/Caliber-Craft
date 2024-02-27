@@ -1,6 +1,10 @@
 <template>
     <div class="container-fluid" id="Products">
-        <div class="row" v-if="products">
+        <div class="search container">
+            <input type="text" name="search">
+            <button  id="sort" type="button">Sort By Price</button>
+        </div>
+        <div class="row" v-if="products" id="prod-cards">
             <card v-for="product in products" :key="product.prodID">
                 <template #prod-img>
                     <img class="prod-img" :src="product.prodUrl">
@@ -51,20 +55,14 @@ export default {
     background: black;
 }
 
-.prod-img {
-    width: 150px;
+#prod-cards{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.card-headers {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease-in-out;
-    transform: translate3d(0px, 0px, 50px);
-}
-.card-headers img:hover {
-    transform: translate3d(0px, 0px, 60px);
+.prod-img {
+    width: 150px;
 }
 
 #see-more {
@@ -80,6 +78,10 @@ export default {
 }
 #see-more:hover {
   transform: translate3d(0px, 0px, 60px);
+}
+#sort{
+    border-radius: 5px;
+    background-color: rgb(31,37,64);
 }
 
 </style>
