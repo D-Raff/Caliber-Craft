@@ -7,7 +7,7 @@ const getProducts = async()=>{
     return products
 }
 const getProduct = async(prodID)=>{
-    const [product] = await pool.query(`
+    const [[product]] = await pool.query(`
     SELECT *
     FROM Products
     WHERE prodID = ?
