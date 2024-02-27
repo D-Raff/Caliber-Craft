@@ -6,9 +6,8 @@ export default {
             res.send(await getProducts())
         }catch(e){
             res.status(404).json({
-                status: res.send(
-                  'Cannot retrive Products'
-                )
+                status: 404,
+                msg:'Cannot retrive Products'
             })
         }
     },
@@ -17,9 +16,8 @@ export default {
             res.send(await getProduct(+req.params.prodID))
         }catch(e){
             res.status(404).json({
-                status: res.send(
-                    'Sorry cannot get that item'
-                )
+                status:404,
+                msg:'Sorry cannot get that product'
             })
         }
     },
@@ -32,7 +30,8 @@ export default {
             })
         }catch(e){
             res.status(404).json({
-               status: res.send('Cannot add a product')
+               status:404,
+               msg:'Cannot add a product'
             })
         }
     },
@@ -53,7 +52,8 @@ export default {
             res.json(await getProducts())
         }catch(e){
             res.status(404).json({
-                status: res.send('Unable to edit product')
+                status:404,
+                msg:'Unable to edit product'
             })
         }
     },
@@ -62,7 +62,8 @@ export default {
             res.send(await deleteProduct(req.params.prodID))
         }catch(e){
             res.status(404).json({
-                status:res.send('No product was deleted')
+                status:404,
+                msg:'No product was deleted'
             })
         }
     }
