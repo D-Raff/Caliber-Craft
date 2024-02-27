@@ -1,5 +1,4 @@
 <template>
-    <div>
         <div class="card">
             <div class="photo">
                 <slot name="prod-img"></slot>
@@ -16,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </template>
 <script>
 export default {
@@ -26,30 +25,14 @@ export default {
 <style scoped>
 
 .card {
-    font-family: Lato, sans-serif;
     position: relative;
     width: 290px;
     height: 400px;
     background: #232323;
     border-radius: 20px;
     overflow: hidden;
+    margin: 10px;
 }
-
-.card:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    clip-path: circle(150px at 80% 20%);
-    transition: .5s ease-in-out;
-}
-
-.card:hover:before {
-    clip-path: circle(300px at 80% -20%);
-}
-
 .title {
     position: relative;
     font-weight: 600;
