@@ -1,4 +1,4 @@
-import { getUsers,getUser, addUser,editUser,deleteUser   } from "../model/database.js";
+import { getUsers,getUser, addUser,editUser,deleteUser   } from "../models/user.js";
 import bcrypt, {hash} from 'bcrypt'
 
 export default   {
