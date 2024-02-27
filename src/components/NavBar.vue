@@ -5,7 +5,9 @@
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-            <img src="https://iili.io/JGNgKPf.png" alt="logo">
+            <router-link to="/" id="nav-logo">
+                <img src="https://iili.io/JGNgKPf.png" alt="logo">
+            </router-link>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -53,6 +55,8 @@ export default {
 img[alt="logo"]{
     height: 200px;
     aspect-ratio: 1/1;
+}
+#nav-logo{
     margin-left: auto;
 }
 .btn-close{
@@ -63,16 +67,15 @@ img[alt="logo"]{
     background-color: rgb(31,37,64);
     color: #42b983;
     position: absolute;
+    z-index: 2;
 }
 .offcanvas-header{
     background: linear-gradient(to bottom, rgb(31,37,64), rgb(0,0,0));
     color: #42b983;
 }
 .offcanvas-body{
-    /* background: linear-gradient(to bottom, rgb(31,37,64), rgb(1,3,9)); */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://iili.io/JGw1YUQ.jpg");
     background-repeat: no-repeat;
-    background-position: 80% 70%;
     background-size: 100%;
 }
 </style>
