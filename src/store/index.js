@@ -188,6 +188,7 @@ export default createStore({
       try {
         let result = (await axios.get(`${dbURL}products/${payload.id}`))
           .data;
+          // console.log(, result)
         if (result) {
           context.commit("setProduct", result);
         } else {
