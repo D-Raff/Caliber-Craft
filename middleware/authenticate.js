@@ -1,7 +1,7 @@
 //authenticate functions
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { addUser } from '../model/database.js'
+
 
 const authenticateToken = (req,res,next)=>{
     let {cookie} = req.headers
