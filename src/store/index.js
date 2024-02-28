@@ -12,7 +12,7 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: "",
+    product: null,
   },
   getters: {},
   mutations: {
@@ -32,7 +32,7 @@ export default createStore({
   actions: {
     async register(context, payload) {
       try {
-        let { msg } = (await axios.post(`${dbURL}users/`, payload)).data;
+        let msg = (await axios.post(`${dbURL}users/`, payload)).data;
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -54,7 +54,7 @@ export default createStore({
     },
     async fetchUsers(context) {
       try {
-        let { results } = (await axios.get(`${dbURL}users`)).data;
+        let results = (await axios.get(`${dbURL}users`)).data;
         if (results) {
           context.commit("setUsers", results);
         }
@@ -69,7 +69,7 @@ export default createStore({
     },
     async fetchUser(context, payload) {
       try {
-        let { result } = (await axios.get(`${dbURL}users/${payload.id}`)).data;
+        let result = (await axios.get(`${dbURL}users/${payload.id}`)).data;
         if (result) {
           context.commit("setUser", result);
         } else {
@@ -91,7 +91,7 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try {
-        let { msg } = await axios.patch(`${dbURL}users/update/${payload.id}`);
+        let msg = await axios.patch(`${dbURL}users/update/${payload.id}`);
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -112,7 +112,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try {
-        let { msg } = await axios.delete(`${dbURL}users/${payload.id}`);
+        let msg = await axios.delete(`${dbURL}users/${payload.id}`);
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({

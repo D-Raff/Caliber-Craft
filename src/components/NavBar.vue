@@ -1,6 +1,7 @@
 <template>
     <button class="btn menubtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling">Menu</button>
+        aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -45,11 +46,12 @@ export default {
 
 #nav-item {
     text-decoration: none;
-    color: red;
+    color: #B7B5B3;
 }
 
 .router-link-exact-active {
     color: #42b983 !important;
+    text-decoration: underline !important;
 }
 
 img[alt="logo"]{
