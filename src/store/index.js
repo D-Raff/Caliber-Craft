@@ -12,7 +12,7 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null,
+    product: "",
   },
   getters: {},
   mutations: {
