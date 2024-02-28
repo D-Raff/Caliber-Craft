@@ -4,9 +4,10 @@ import controller from '../controller/user.js'
 const router = express.Router()
 router.route('/')
 .get(controller.getUsers)
+.post(controller.addUser)
 
 router.route('/login')
-.post(controller.addUser)
+.post(controller.login)
 
 router.route('/:userID')
 
