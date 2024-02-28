@@ -1,6 +1,7 @@
 <template>
     <button class="btn menubtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling">Menu</button>
+        aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -64,7 +65,7 @@ img[alt="logo"]{
 }
 
 .menubtn{
-    background-color: rgb(31,37,64);
+    /* background-color: rgb(31,37,64); */
     color: #42b983;
     position: absolute;
     z-index: 2;
