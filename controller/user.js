@@ -72,5 +72,20 @@ export default   {
             })
         }
     },
+    login:async(req,res)=>{
+        const {emailAdd,userPass} = req.body
+        const hashedPassword = await checkUser(emailAdd)
+        bcrypt.compare(userPass,hashedPassword,(err,result)=>{
+            if(err) throw err
+            if(result === true){
+                const {emailAdd} = req.body
+                const token = jwt.sign({emailAdd:emailAdd},process.env.SECRET_KEY,{expiresIn:'1y'})    
+                res.cookie('jwt',token,{httpOnly:false})
+                next()
+            }else{
+                res.send({msg:'Password doesnt match'})
+            }
+        })
+    }
   
 }
