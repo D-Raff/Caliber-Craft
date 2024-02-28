@@ -54,6 +54,7 @@ export default {
 </script>
 <style scoped>
 #Products {
+    font-family: "Rubik", sans-serif;
     min-height: 100vh;
     width: 100%;
     background: black;
