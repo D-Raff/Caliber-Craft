@@ -12,19 +12,6 @@ config()
 const PORT = process.env.MYSQL_ADDON_PORT
 const app = express()
 
-
-
-const authenticateToken = (req,res,next)=>{
-    let {cookie} = req.headers
-    let tokenInHeader = cookie && cookie.split('=')[1]
-    if(tokenInHeader===null)res.sendStatus(401)
-    jwt.verify(tokenInHeader,process.env.SECRET_KEY,(err,user)=>{
-        if(err) return res.sendStatus(403)
-        req.emailAdd = emailAdd
-        next()
-    })
-}
-
 app.use(cors()) 
 app.use(express.json())
 app.use(cookieParser())
