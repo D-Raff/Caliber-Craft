@@ -46,11 +46,12 @@ export default {
 
 #nav-item {
     text-decoration: none;
-    color: red;
+    color: #B7B5B3;
 }
 
 .router-link-exact-active {
     color: #42b983 !important;
+    text-decoration: underline !important;
 }
 
 img[alt="logo"]{
@@ -65,7 +66,7 @@ img[alt="logo"]{
 }
 
 .menubtn{
-    /* background-color: rgb(31,37,64); */
+    background-color: rgb(31,37,64);
     color: #42b983;
     position: absolute;
     z-index: 2;

@@ -2,6 +2,7 @@
     <div class="container-fluid" id="full-footer">
         <img src="https://iili.io/JGNgqF4.png" alt="nav-logo">
         <div class="container links">
+            <p>Quick Links</p>
             <router-link to="/" id="link">Home</router-link>
             <router-link to="/about" id="link">About</router-link>
             <router-link to="/products" id="link">Store</router-link>
@@ -14,22 +15,26 @@
                 <span>
                     Damon Raffels
                 </span>
-                <span>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
+                <span class="icons">
+                    <a href="https://wa.me/0827881888" target="_blank">
+                        <i class="fa fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/damon.raffels/" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="damonraffels@gmail.com" target="_blank">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
                 </span>
             </div>
             <div class="socials">
                 <span>
                     Daanyaal Kellerman
                 </span>
-                <span>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
+                <span class="icons">
+                    <a href="https://wa.me/0680071963" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/daanyaalkellerman/" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a href="mailto:kellermandaanyaal2@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
                 </span>
             </div>
         </div>
@@ -55,19 +60,24 @@ export default {
 
 #link {
     text-decoration: none;
-    color: #42b983;
+    color: #B7B5B3;
 }
 
 .links {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     width: 300px !important;
     padding: 0;
     margin: 0;
+    font-size: small;
+    color: white;
 }
-
+.icons{
+    display: flex;
+    gap: 3px;
+}
 .router-link-exact-active {
     text-decoration: underline !important;
     color: aqua !important;
@@ -83,5 +93,10 @@ img[alt="nav-logo"] {
     flex-direction: column;
     width: 300px;
     margin: 0;
+}
+.socials{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
 </style>
