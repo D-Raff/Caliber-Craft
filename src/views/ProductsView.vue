@@ -27,16 +27,20 @@
             </card>
         </div>
         <div class="row" v-else>
-            <p class="lead">Loading</p>
+            <div class="lead">
+                <spinner/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import card from '@/components/Card.vue';
+import spinner from '@/components/Spinner.vue';
 export default {
     components: {
-        card
+        card,
+        spinner
     },
     computed: {
         products() {
@@ -53,6 +57,14 @@ export default {
     min-height: 100vh;
     width: 100%;
     background: black;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.lead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #prod-cards{
