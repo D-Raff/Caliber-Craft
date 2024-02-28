@@ -7,7 +7,7 @@
         <div class="row" v-if="products" id="prod-cards">
             <card v-for="product in products" :key="product.prodID">
                 <template #prod-img>
-                    <img class="prod-img" :src="product.prodUrl">
+                    <img class="prod-img" :src="product.prodUrl" loading="lazy">
                 </template>
                 <template #prod-title>
                         {{ product.prodName }}

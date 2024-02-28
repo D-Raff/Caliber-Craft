@@ -1,25 +1,10 @@
 <template>
-    <div class="single-img">
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img :src="product.prodUrl" class="d-block w-100 weapon" alt="prod-png">
-                </div>
-                <div class="carousel-item">
-                    <img src="" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+    <div class="container-fluid" id="single-view">
+        <div class=" sing-img">
+            <img :src="product.prodUrl" alt="prod-png" id="prod-png" loading="lazy">
+        </div>
+        <div class="prod-bio">
+            <img :src="product.prodBio" alt="product-bio" id="prod-bio" loading="lazy">
         </div>
     </div>
 </template>
@@ -39,7 +24,33 @@ export default {
 }
 </script>
 <style scoped>
-.carousel-item.active{
-    background-image: url("https://iili.io/JGw170x.jpg");
+#single-view{
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+.sing-img{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://iili.io/JGw170x.jpg");
+    margin: 0;
+    padding: 0;
+}
+ #prod-png{
+    width: 55%;
+    height: 80%;
+ }
+ #prod-bio{
+    filter: brightness(20%);
+ }
+ :is(#prod-bio,.prod-bio){
+    width: 100%;
+ }
 </style>
