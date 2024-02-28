@@ -6,7 +6,7 @@ import ProductsRouter from './routes/product.js'
 import UsersRouter from './routes/user.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { checkUser } from './models/user.js';
+import { checkUser } from './model/user.js';
 config()
 
 const PORT = process.env.MYSQL_ADDON_PORT
@@ -29,7 +29,7 @@ app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.static('views'))
-app.use('/users',authenticateToken,UsersRouter)
+app.use('/users',UsersRouter)
 app.use('/products',ProductsRouter)
 // app.post('/admin', (req,res)=>{
 //     const {emailAdd,userPass} = req.body
@@ -60,7 +60,7 @@ const auth = async (req,res,next)=>{
             })
             next()
         }else{
-            res.send({msg:'Password or Email address does not match'})
+            res.send({msg:'Password or Email address doesnt match'})
         }
     })
     //only the backend can access the hook if set to httpOnly
