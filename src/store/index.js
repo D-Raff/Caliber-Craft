@@ -12,7 +12,7 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null,
+    product: "",
   },
   getters: {},
   mutations: {
@@ -91,7 +91,8 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try {
-        let msg = await axios.patch(`${dbURL}users/update/${payload.id}`);
+        console.log(payload);
+        let msg = await axios.patch(`${dbURL}users/${payload.userID}`, payload);
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -100,6 +101,7 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
+          location.reload()
         }
       } catch (e) {
         sweet({
@@ -112,7 +114,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try {
-        let msg = await axios.delete(`${dbURL}users/${payload.id}`);
+        let msg = await axios.delete(`${dbURL}users/${payload}`);
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -121,6 +123,7 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
+          location.reload()
         }
       } catch (e) {
         sweet({
@@ -233,7 +236,8 @@ export default createStore({
     },
     async editProduct(context, payload) {
       try {
-        let msg = (await axios.patch(`${dbURL}products/:prodID`, payload)).data;
+        let prodID = payload.prodID;
+        let msg = await axios.patch(`${dbURL}products/${prodID}`, payload);
         if (msg) {
           context.dispatch("fetchProducts");
           sweet({
@@ -242,13 +246,34 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
-          location.reload()
-          
+          location.reload() 
         }
       } catch (e) {
         sweet({
           title: "Error",
           text: "Please try again at a different time",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
+    async deleteProduct(context, payload) {
+      try {
+        let msg = await axios.delete(`${dbURL}products/${payload}`);
+        if (msg) {
+          context.dispatch("fetchProducts");
+          sweet({
+            title: "Delete Product",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+          location.reload() 
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "Could not delete this item",
           icon: "error",
           timer: 4000,
         });
