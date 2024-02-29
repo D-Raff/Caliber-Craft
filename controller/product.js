@@ -23,12 +23,14 @@ export default {
     },
     addProduct: async (req,res)=>{
         try{
-            const {prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3} = req.body
-            await addProduct(prodName,quantity,amount,category,prodUrl,prodBio,prodSingle1,prodSingle2,prodSingle3)
+            const {prodName,quantity,amount,category,prodUrl,prodBio,prodDes} = req.body
+            // console.log( addProduct );
+            await addProduct(prodName,quantity,amount,category,prodUrl,prodBio,prodDes)
             res.send({
                 msg:'New Product Added'
             })
         }catch(e){
+            console.log(e)
             res.status(404).json({
                status:404,
                msg:'Cannot add a product'
