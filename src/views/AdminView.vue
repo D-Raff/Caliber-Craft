@@ -3,7 +3,7 @@
         <h1>ADMIN</h1>
         <div class="container tab-div">
             <h2>Users</h2>
-            <button class="add">
+            <button class="add" data-bs-toggle="modal" data-bs-target="#productModal">
                 <i class="fa-solid fa-user-plus"></i>
             </button>
             <table class="table-secondary">
@@ -45,8 +45,8 @@
                         <td>{{ user.userRole }}</td>
                         <td>{{ user.emailAdd }}</td>
                         <td class="btns">
-                            <button class="btn-edit"><i class="fa-solid fa-user-pen"></i></button>
-                            <button class="btn-del"><i class="fa-solid fa-user-minus"></i></button>
+                            <button @click="editUser(user.userID)" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fa-solid fa-user-pen"></i> {{ user.userID }}</button>
+                            <button @click="delUser(user.userID)" class="btn-del"><i class="fa-solid fa-user-minus"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -57,10 +57,7 @@
         </div>
         <div class="container tab-div">
             <h2>Products</h2>
-            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button> -->
-            <button class="add" type="button" data-bs-toggle="modal" data-bs-target="#productModal">
+            <button class="add" type="button" data-bs-toggle="modal" data-bs-target="#addproductModal">
                 <i class="fa-solid fa-square-plus"></i>
             </button>
             <table class="table-secondary">
@@ -102,8 +99,9 @@
                         <td>{{ product.category }}</td>
                         <td>{{ product.prodDes }}</td>
                         <td class="btns">
-                            <button :value="product.prodID" class="btn-edit" data-bs-toggle="modal" data-bs-target="#productModal"><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button class="btn-del"><i class="fa-solid fa-trash"></i></button>
+                            <button @click="editBtn(product.prodID)" class="btn-edit" data-bs-toggle="modal"
+                                data-bs-target="#productModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button @click="delProd(product.prodID)" class="btn-del"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -112,11 +110,11 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalTitle" aria-hidden="true">
+        <div class="modal fade" id="addproductModal" tabindex="-1" aria-labelledby="productModalTitle" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="productModalTitle">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="addproductModalTitle">Add a Product</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -134,22 +132,45 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="EditUserModalTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="EditUserModalTitle">Edit user</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input v-model="userPayload.firstName" type="text" name="name" placeholder=""><br>
+                        <input v-model="userPayload.lastName" type="text" name="surname"><br>
+                        <input v-model="userPayload.userAge" type="text" name="age"><br>
+                        <input v-model="userPayload.gender" type="text" name="gender"><br>
+                        <input v-model="userPayload.userRole" type="text" name="role"><br>
+                        <input v-model="userPayload.emailAdd" type="text" name="email"><br>
+                        <input v-model="userPayload.userProfile" type="text" name="profile"><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="editUserBtn()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalTitle" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="productModalTitle">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="productModalTitle">Edit product</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input v-model="prodName" type="text" name="id" placeholder="hello"><br>
-                        <input v-model="quantity" type="text" name="name"><br>
-                        <input v-model="amount" type="text" name="name"><br>
-                        <input v-model="category" type="text" name="name"><br>
-                        <input v-model="prodUrl" type="text" name="name"><br>
-                        <input v-model="prodBio" type="text" name="name"><br>
-                        <input v-model="prodDes" type="text" name="name"><br>
+                        <input v-model="prodPayload.prodName" type="text" name="name" placeholder=""><br>
+                        <input v-model="prodPayload.quantity" type="text" name="quantity"><br>
+                        <input v-model="prodPayload.amount" type="text" name="amount"><br>
+                        <input v-model="prodPayload.category" type="text" name="category"><br>
+                        <input v-model="prodPayload.prodUrl" type="text" name="imageUrl"><br>
+                        <input v-model="prodPayload.prodBio" type="text" name="Bio"><br>
+                        <input v-model="prodPayload.prodDes" type="text" name="Desc"><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -168,13 +189,26 @@ export default {
     },
     data() {
         return {
-            prodName: "",
-            quantity: "",
-            amount: "",
-            category: "",
-            prodUrl: "",
-            prodBio: "",
-            prodDes: "",
+            prodPayload: {
+                prodID: null,
+                prodName: "",
+                quantity: "",
+                amount: "",
+                category: "",
+                prodUrl: "",
+                prodBio: "",
+                prodDes: "",
+            },
+            userPayload: {
+                userID: null,
+                firstName: "",
+                lastName: "",
+                userAge: "",
+                gender: "",
+                userRole: "",
+                emailAdd: "",
+                userProfile: "",
+            }
         }
     },
     methods: {
@@ -183,9 +217,65 @@ export default {
             this.$store.dispatch('addProduct', this.data);
         },
         editProduct() {
-            this.data = { prodName: this.prodName, quantity: this.quantity, amount: this.amount, category: this.category, prodUrl: this.prodUrl, prodBio: this.prodBio, prodDes: this.prodDes }
-            this.$store.dispatch('editProduct', this.data);
-        }
+            this.$store.dispatch('editProduct', this.prodPayload);
+        },
+        editBtn(id) {
+            this.products.forEach((item) => {
+                if (item.prodID == +id) {
+                    this.prodName = item.prodName
+                    this.quantity = item.quantity
+                    this.amount = item.amount
+                    this.category = item.category
+                    this.prodUrl = item.prodUrl
+                    this.prodBio = item.prodBio
+                    this.prodDes = item.prodDes
+
+                    this.prodPayload = {
+                        prodID: item.prodID,
+                        prodName: this.prodName,
+                        quantity: this.quantity,
+                        amount: this.amount,
+                        category: this.category,
+                        prodUrl: this.prodUrl,
+                        prodBio: this.prodBio,
+                        prodDes: this.prodDes
+                    }
+                }
+            })
+        },
+        delProd(id){
+            this.$store.dispatch('deleteProduct', id);
+        },
+        editUser(id) {
+            this.users.forEach((user) => {
+                if (user.userID == +id) {
+                    this.firstName = user.firstName
+                    this.lastName = user.lastName
+                    this.userAge = user.userAge
+                    this.gender = user.gender
+                    this.userRole = user.userRole
+                    this.emailAdd = user.emailAdd
+                    this.userProfile = user.userProfile
+
+                    this.userPayload = {
+                        userID: user.userID,
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        userAge: this.userAge,
+                        gender: this.gender,
+                        userRole: this.userRole,
+                        emailAdd: this.emailAdd,
+                        userProfile: this.userProfile
+                    }
+                }
+            })
+        },
+        editUserBtn(){
+            this.$store.dispatch('updateUser', this.userPayload);
+        },
+        delUser(id){
+            this.$store.dispatch('deleteUser', id);
+        },
 
     },
     computed: {
