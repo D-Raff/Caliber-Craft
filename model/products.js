@@ -23,10 +23,10 @@ const addProduct = async (prodName,quantity,amount,category,prodUrl,prodBio,prod
     // const product = await pool.query(`INSERT INTO Products SET (prodId = default,?,?,?,?,?,?,?,?,?)`, [prodName,quantity,amount,category,prodUrl,prodBio]);
     // return getProduct(product.insertId);
 }
-const editProduct = async (prodID,prodName,quantity,amount,category,prodUrl,prodBio)=>{
+const editProduct = async (prodID,prodName,quantity,amount,category,prodUrl,prodBio,prodDes)=>{
     const [product] = await pool.query(`
-    UPDATE Products SET prodName = ?,quantity = ?,amount = ?,category = ?,prodUrl = ?,prodBio = ?,prodSingle1 = ?,prodSingle2 = ?,prodSingle3 = ? WHERE (prodID = ?)
-    `,[prodName,quantity,amount,category,prodUrl,prodBio,prodID]) 
+    UPDATE Products SET prodName = ?,quantity = ?,amount = ?,category = ?,prodUrl = ?,prodBio = ?,prodDes = ? WHERE (prodID = ?)
+    `,[prodName,quantity,amount,category,prodUrl,prodBio,prodDes,prodID]) 
 
     return getProducts(product)
 }
