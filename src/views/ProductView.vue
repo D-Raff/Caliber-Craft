@@ -38,7 +38,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Rubik", sans-serif;;
+    font-family: "Rubik", sans-serif;
 }
 
 .sing-img {
