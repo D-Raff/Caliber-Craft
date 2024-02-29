@@ -41,7 +41,7 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
-          router.push({ name: "login" }); //FIX THIS
+          router.push({ name: "login" });
         }
       } catch (e) {
         sweet({
@@ -203,6 +203,52 @@ export default createStore({
         sweet({
           title: "Error",
           text: "this product was not found.",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
+    async addProduct(context, payload) {
+      try {
+        let msg = (await axios.post(`${dbURL}products/`, payload)).data;
+        if (msg) {
+          context.dispatch("fetchProducts");
+          sweet({
+            title: "Add Product",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+          location.reload()
+          
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "Please try again at a different time",
+          icon: "error",
+          timer: 4000,
+        });
+      }
+    },
+    async editProduct(context, payload) {
+      try {
+        let msg = (await axios.patch(`${dbURL}products/:prodID`, payload)).data;
+        if (msg) {
+          context.dispatch("fetchProducts");
+          sweet({
+            title: "Edit Product",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+          location.reload()
+          
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "Please try again at a different time",
           icon: "error",
           timer: 4000,
         });

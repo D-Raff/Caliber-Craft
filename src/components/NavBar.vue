@@ -1,6 +1,6 @@
 <template>
     <button class="btn menubtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span>
+        aria-controls="offcanvasScrolling"><i class="fa-solid fa-bars"></i>
     </button>
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
