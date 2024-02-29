@@ -102,7 +102,7 @@
                         <td>{{ product.category }}</td>
                         <td>{{ product.prodDes }}</td>
                         <td class="btns">
-                            <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#productModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button :value="product.prodID" class="btn-edit" data-bs-toggle="modal" data-bs-target="#productModal"><i class="fa-regular fa-pen-to-square"></i></button>
                             <button class="btn-del"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
