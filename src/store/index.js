@@ -41,7 +41,8 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
-          router.push({ name: "login" });
+          location.reload()
+          // router.push({ name: "login" });
         }
       } catch (e) {
         sweet({
@@ -91,7 +92,6 @@ export default createStore({
     },
     async updateUser(context, payload) {
       try {
-        console.log(payload);
         let msg = await axios.patch(`${dbURL}users/${payload.userID}`, payload);
         if (msg) {
           context.dispatch("fetchUsers");
@@ -191,7 +191,6 @@ export default createStore({
       try {
         let result = (await axios.get(`${dbURL}products/${payload.id}`))
           .data;
-          // console.log(, result)
         if (result) {
           context.commit("setProduct", result);
         } else {

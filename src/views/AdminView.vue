@@ -3,7 +3,7 @@
         <h1>ADMIN</h1>
         <div class="container tab-div">
             <h2>Users</h2>
-            <button class="add" data-bs-toggle="modal" data-bs-target="#productModal">
+            <button class="add" data-bs-toggle="modal" data-bs-target="#addUserModal">
                 <i class="fa-solid fa-user-plus"></i>
             </button>
             <table class="table-secondary">
@@ -45,7 +45,7 @@
                         <td>{{ user.userRole }}</td>
                         <td>{{ user.emailAdd }}</td>
                         <td class="btns">
-                            <button @click="editUser(user.userID)" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fa-solid fa-user-pen"></i> {{ user.userID }}</button>
+                            <button @click="editUser(user.userID)" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fa-solid fa-user-pen"></i></button>
                             <button @click="delUser(user.userID)" class="btn-del"><i class="fa-solid fa-user-minus"></i></button>
                         </td>
                     </tr>
@@ -118,17 +118,41 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input v-model="prodName" type="text" name="id" placeholder="hello"><br>
-                        <input v-model="quantity" type="text" name="name"><br>
-                        <input v-model="amount" type="text" name="name"><br>
-                        <input v-model="category" type="text" name="name"><br>
-                        <input v-model="prodUrl" type="text" name="name"><br>
-                        <input v-model="prodBio" type="text" name="name"><br>
-                        <input v-model="prodDes" type="text" name="name"><br>
+                        <input v-model="prodName" type="text" name="id" placeholder="Name"><br>
+                        <input v-model="quantity" type="text" name="name" placeholder="quantity"><br>
+                        <input v-model="amount" type="text" name="name" placeholder="amount"><br>
+                        <input v-model="category" type="text" name="name" placeholder="Category"><br>
+                        <input v-model="prodUrl" type="text" name="name" placeholder="Img Url"><br>
+                        <input v-model="prodBio" type="text" name="name" placeholder="Bio img url"><br>
+                        <input v-model="prodDes" type="text" name="name" placeholder="Description"><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" @click="addProduct()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addUserModalTitle">Edit user</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input v-model="firstName" type="text" name="name" placeholder="First Name"><br>
+                        <input v-model="lastName" type="text" name="surname" placeholder="Last Name"><br>
+                        <input v-model="userPass" type="text" name="Password" placeholder="Password"><br>
+                        <input v-model="userAge" type="text" name="age" placeholder="Age"><br>
+                        <input v-model="gender" type="text" name="gender" placeholder="Gender"><br>
+                        <input v-model="userRole" type="text" name="role" placeholder="Role"><br>
+                        <input v-model="emailAdd" type="text" name="email" placeholder="Email address"><br>
+                        <input v-model="userProfile" type="text" name="profile" placeholder="Profile link"><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="addUser()">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -141,13 +165,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input v-model="userPayload.firstName" type="text" name="name" placeholder=""><br>
-                        <input v-model="userPayload.lastName" type="text" name="surname"><br>
-                        <input v-model="userPayload.userAge" type="text" name="age"><br>
-                        <input v-model="userPayload.gender" type="text" name="gender"><br>
-                        <input v-model="userPayload.userRole" type="text" name="role"><br>
-                        <input v-model="userPayload.emailAdd" type="text" name="email"><br>
-                        <input v-model="userPayload.userProfile" type="text" name="profile"><br>
+                        <input v-model="userPayload.firstName" type="text" name="name" placeholder="First Name"><br>
+                        <input v-model="userPayload.lastName" type="text" name="surname" placeholder="Last Name"><br>
+                        <input v-model="userPayload.userAge" type="text" name="age" placeholder="Age"><br>
+                        <input v-model="userPayload.gender" type="text" name="gender" placeholder="Gender"><br>
+                        <input v-model="userPayload.userRole" type="text" name="role" placeholder="Role"><br>
+                        <input v-model="userPayload.emailAdd" type="text" name="email" placeholder="Email address"><br>
+                        <input v-model="userPayload.userProfile" type="text" name="profile" placeholder="Profile link"><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -164,7 +188,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input v-model="prodPayload.prodName" type="text" name="name" placeholder=""><br>
+                        <input v-model="prodPayload.prodName" type="text" name="name" placeholder="Product name"><br>
                         <input v-model="prodPayload.quantity" type="text" name="quantity"><br>
                         <input v-model="prodPayload.amount" type="text" name="amount"><br>
                         <input v-model="prodPayload.category" type="text" name="category"><br>
@@ -203,6 +227,7 @@ export default {
                 userID: null,
                 firstName: "",
                 lastName: "",
+                userPass: "",
                 userAge: "",
                 gender: "",
                 userRole: "",
@@ -256,7 +281,7 @@ export default {
                     this.userRole = user.userRole
                     this.emailAdd = user.emailAdd
                     this.userProfile = user.userProfile
-
+                    
                     this.userPayload = {
                         userID: user.userID,
                         firstName: this.firstName,
@@ -276,7 +301,11 @@ export default {
         delUser(id){
             this.$store.dispatch('deleteUser', id);
         },
-
+        addUser() {
+            this.data = { firstName: this.firstName, lastName: this.lastName, userPass: this.userPass, userAge: this.userAge, gender: this.gender, userRole: this.userRole, emailAdd: this.emailAdd, userProfile: this.userProfile },
+            this.$store.dispatch('register', this.data);
+        },
+        
     },
     computed: {
         products() {
