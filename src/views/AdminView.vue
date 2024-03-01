@@ -45,7 +45,7 @@
                         <td>{{ user.userRole }}</td>
                         <td>{{ user.emailAdd }}</td>
                         <td class="btns">
-                            <button @click="editUser(user.userID)" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fa-solid fa-user-pen"></i> {{ user.userID }}</button>
+                            <button @click="editUser(user.userID)" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fa-solid fa-user-pen"></i></button>
                             <button @click="delUser(user.userID)" class="btn-del"><i class="fa-solid fa-user-minus"></i></button>
                         </td>
                     </tr>
@@ -303,7 +303,6 @@ export default {
         },
         addUser() {
             this.data = { firstName: this.firstName, lastName: this.lastName, userPass: this.userPass, userAge: this.userAge, gender: this.gender, userRole: this.userRole, emailAdd: this.emailAdd, userProfile: this.userProfile },
-            console.log(this.data);
             this.$store.dispatch('register', this.data);
         },
         
