@@ -1,7 +1,14 @@
+import jwt from 'jsonwebtoken'
 
-const checkUser = async (emailAdd)=>{
-    const [[{userPass}]] = await pool.query(`
-    SELECT userPass FROM Users WHERE emailAdd = ?
-    `,[emailAdd])
-    return userPass
+const authenticateToken = (req,res,next)=>{
+    let {cookie} = req.headers
+    let tokenInHeader = cookie && cookie.split('=')[1]
+    if(tokenInHeader===null)res.sendStatus(401)
+    jwt.verify(tokenInHeader,process.env.SECRET_KEY,(err,user)=>{
+        if(err) return res.sendStatus(403)
+        req.user = user
+        next()
+    })
 }
+
+export default authenticateToken

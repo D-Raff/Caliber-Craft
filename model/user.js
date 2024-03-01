@@ -35,10 +35,10 @@ const deleteUser = async (userID)=>{
     `,[userID])
     return getUsers(user)
 }
-const checkUser = async (emailAdd)=>{
-    const [[{userPass}]]= await pool.query(`
+const verifyUser = async (emailAdd)=>{
+    const [[{userPass}]] = await pool.query(`
     SELECT userPass FROM Users WHERE emailAdd = ?
     `,[emailAdd])
     return userPass
 }
-export{getUsers,getUser,addUser,editUser,deleteUser,checkUser}
+export{getUsers,getUser,addUser,editUser,deleteUser,verifyUser} 

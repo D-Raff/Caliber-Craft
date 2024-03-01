@@ -1,5 +1,4 @@
-import { getUsers,getUser, addUser,editUser,deleteUser   } from "../model/user.js";
-import bcrypt, {hash} from 'bcrypt'
+import { getUsers,getUser, addUser,editUser,deleteUser} from "../model/user.js";
 
 export default   {
     getUsers: async (req,res)=>{
@@ -72,20 +71,38 @@ export default   {
             })
         }
     },
-    login:async(req,res)=>{
-        const {emailAdd,userPass} = req.body
-        const hashedPassword = await checkUser(emailAdd)
-        bcrypt.compare(userPass,hashedPassword,(err,result)=>{
-            if(err) throw err
-            if(result === true){
-                const {emailAdd} = req.body
-                const token = jwt.sign({emailAdd:emailAdd},process.env.SECRET_KEY,{expiresIn:'1y'})    
-                res.cookie('jwt',token,{httpOnly:false})
-                next()
-            }else{
-                res.send({msg:'Password doesnt match'})
-            }
-        })
+    checkUser:async (req,res)=>{
+        try{
+            const {emailAdd,userPass} = req.body
+            bcrypt.hash(userPass,10,async (err,hash)=>{
+                if(err) throw err
+                await checkUser(emailAdd,hash)
+                res.send({
+                    msg: "Sign up new User ;)"
+                })
+            })
+        }catch(e){
+            res.status(404).json({
+                status:404,
+                msg:'Unable to sign up :('
+            })
+        }
+      
+    },
+    verifyUser:async(req,res)=>{
+    //     // const {emailAdd,userPass} = req.body
+    //     // const hashedPassword = await checkUser(emailAdd)
+    //     // bcrypt.compare(userPass,hashedPassword,(err,result)=>{
+    //     //     if(err) throw err
+    //     //     if(result === true){
+    //     //         const {emailAdd} = req.body
+    //     //         const token = jwt.sign({emailAdd:emailAdd},process.env.SECRET_KEY,{expiresIn:'1h'})    
+    //     //         res.cookie('jwt',token,{httpOnly:false})
+    //     //         next()
+    //     //     }else{
+    //     //         res.send({msg:'Password doesnt match'})
+    //     //     }
+    //     // })
     }
   
 }
