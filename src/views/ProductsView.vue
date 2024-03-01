@@ -1,16 +1,16 @@
 <template>
     <div class="container-fluid" id="Products">
         <div class="search container">
-            <input type="text" name="search">
-            <button  id="sort" type="button">Sort By Price</button>
+            <input type="text" name="search" v-model="search" @input="searchProd()" id="searchBar" placeholder="Name/Category">
+            <button id="sort" type="button" @click="sortPrice()">Sort By Price</button>
         </div>
         <div class="row" v-if="products" id="prod-cards">
-            <card v-for="product in products" :key="product.prodID">
+            <card v-for="product in searchProd() || sortPrice()" :key="product.prodID">
                 <template #prod-img>
                     <img class="prod-img" :src="product.prodUrl" loading="lazy">
                 </template>
                 <template #prod-title>
-                        {{ product.prodName }}
+                    {{ product.prodName }}
                 </template>
                 <template #Desc>
                     <p>
@@ -22,13 +22,14 @@
                     <p>
                         Quantity: {{ product.quantity }}
                     </p>
-                    <router-link :to="{ name: 'product', params: { id: product.prodID } }" id="see-more">View More</router-link>
+                    <router-link :to="{ name: 'product', params: { id: product.prodID } }" id="see-more">View
+                        More</router-link>
                 </template>
             </card>
         </div>
         <div class="row" v-else>
             <div class="lead">
-                <spinner/>
+                <spinner />
             </div>
         </div>
     </div>
@@ -41,6 +42,27 @@ export default {
     components: {
         card,
         spinner
+    },
+    data() {
+        return {
+            search: ''
+        }
+    },
+    methods: {
+        searchProd() {
+            let weapons = this.$store.state.products;
+            let find = this.search;
+            let found = weapons.filter(prod => {
+                return prod.prodName.toLowerCase().includes(find.toLowerCase()) || prod.category.toLowerCase().includes(find.toLowerCase());
+            });
+            return found
+        },
+        sortPrice() {
+            let unsorted = this.$store.state.products
+            if (unsorted){
+                unsorted.sort((a, b) => a.amount - b.amount)
+            }
+        }
     },
     computed: {
         products() {
@@ -58,17 +80,18 @@ export default {
     min-height: 100vh;
     width: 100%;
     background: black;
-    display: block;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
-.lead{
+
+.lead {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#prod-cards{
+#prod-cards {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -89,12 +112,31 @@ export default {
     transition: all 0.5s ease-in-out;
     transform: translate3d(0px, 0px, 20px);
 }
+
 #see-more:hover {
-  transform: translate3d(0px, 0px, 60px);
+    transform: translate3d(0px, 0px, 60px);
 }
-#sort{
+.search{
+    margin: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+#searchBar{
+    border-radius: 10px;
+    border: none;
+}
+#sort {
     border-radius: 5px;
-    background-color: rgb(31,37,64);
+    background-color: rgb(31, 37, 64);
+    border: none;
+}
+
+@media (max-width: 396px) {
+    .search{
+    flex-direction: column;
+    align-items: center;
+}
 }
 
 </style>

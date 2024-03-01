@@ -10,6 +10,9 @@
                 <p>name: {{ product.prodName }}</p>
                 <p>Price: R{{ product.amount }}</p>
                 <p class="desc">About: {{ product.prodDes }}</p>
+                <button class="cart">
+                    add to cart
+                </button>
             </div>
         </div>
     </div>
@@ -80,6 +83,9 @@ export default {
     line-height: 100px;
     position: relative;
     top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .desc{
     line-height:normal;
@@ -89,6 +95,24 @@ h2{
     text-decoration: underline;
     color: #841818;
     font-size: 4rem;
+}
+.cart{
+    background: #010309;
+    height: 30px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    border-radius: 5px;
+    color: #42b983;
+}
+
+@media (max-width:850px) {
+    #prod-png{
+        width: 80%;
+        height: 50%;
+    }
 }
 
 </style>

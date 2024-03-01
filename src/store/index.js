@@ -41,7 +41,8 @@ export default createStore({
             icon: "success",
             timer: 4000,
           });
-          router.push({ name: "login" });
+          location.reload()
+          // router.push({ name: "login" });
         }
       } catch (e) {
         sweet({
