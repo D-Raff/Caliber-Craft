@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-fluid" id="contact">
         
     </div>
 </template>
@@ -9,5 +9,7 @@ export default {
 }
 </script>
 <style>
-    
+    #contact{
+        
+    }
 </style>
