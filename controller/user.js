@@ -1,4 +1,4 @@
-    import { getUsers,getUser, addUser,editUser,deleteUser} from "../model/user.js";
+    import { getUsers,getUser,addUser,editUser,deleteUser} from "../model/user.js";
 
     export default   {
         getUsers: async (req,res)=>{
@@ -23,15 +23,8 @@
         },
         addUser:async (req,res)=>{
             try{
-                const {firstName,lastName,userAge,gender,userRole,emailAdd,userPass,userProfile} = req.body
+                
                 // await addUser(firstName,lastName,userAge,gender,userRole,emailAdd,hash,userProfile)
-                bcrypt.hash(userPass,10,async (err,hash)=>{
-                    if(err) throw err
-                    await addUser(firstName,lastName,userAge,gender,userRole,emailAdd,hash,userProfile)
-                    res.send({
-                        msg: "New User Added ;)"
-                    })
-                })
             }catch(e){
                 res.status(404).json({
                     status:404,
@@ -70,24 +63,6 @@
                     msg:'Cannot delete a user at this moment'
                 })
             }
-        },
-        checkUser:async (req,res)=>{
-            try{
-                const {emailAdd,userPass} = req.body
-                bcrypt.hash(userPass,10,async (err,hash)=>{
-                    if(err) throw err
-                    await checkUser(emailAdd,hash)
-                    res.send({
-                        msg: "Sign up new User ;)"
-                    })
-                })
-            }catch(e){
-                res.status(404).json({
-                    status:404,
-                    msg:'Unable to sign up :('
-                })
-            }
-        
         },
         verifyUser:async(req,res)=>{
         //     // const {emailAdd,userPass} = req.body
