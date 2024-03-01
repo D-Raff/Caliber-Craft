@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import ProductsRouter from './routes/product.js'
 import UsersRouter from './routes/user.js'
 import LoginRouter from './routes/login.js'
-import auth from './middleware/verifyToken.js'
+import auth from './middleware/verifyUser.js'
 import authenticateToken from './middleware/authenticate.js';
 
 
@@ -31,16 +31,6 @@ app.use('/login',auth,authenticateToken,LoginRouter)
 app.use('/users',UsersRouter)
 app.use('/products',ProductsRouter)
 
-// app.post('/admin', (req,res)=>{
-//     const {emailAdd,userPass} = req.body
-//     bcrypt.hash(userPass,10,async (err,hash)=>{
-//         if(err) throw err
-//         await addUser(emailAdd,hash)
-//         res.send({
-//             msg: "You have created an account"
-//         })
-//     })
-// })
 app.listen(PORT, ()=>{
     console.log('http://localhost:' + PORT);
 })

@@ -11,7 +11,7 @@ const auth = async (req,res,next)=>{
             res.cookie('jwt',token,{httpOnly:false})
             res.send({
                 token:token,
-                msg:'You have logged succesfully'
+                msg:'You have logged in succesfully'
             })
             next() 
         }else{

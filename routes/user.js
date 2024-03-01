@@ -1,10 +1,11 @@
 import express from 'express';
-import controller from '../controller/user.js'
+import controller from '../controller/user.js';
+import hashpwdBeforeAdd from '../middleware/hashUserPwd.js';
 
 const router = express.Router()
 router.route('/')
 .get(controller.getUsers)
-.post(controller.addUser)
+.post(hashpwdBeforeAdd,controller.addUser)
 
 router.route('/:userID')
 
